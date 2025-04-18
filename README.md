@@ -1,5 +1,32 @@
-# Vue 3 + TypeScript + Vite
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+# Vue 3 App – Obsługa błędów
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+## 🔧 Uruchomienie projektu
+
+1. Uruchom aplikację:
+   ```bash
+   npm run dev
+   ```
+
+## 🧠 Podejście do obsługi błędów
+
+- Wykorzystano `Pinia` do globalnego przechowywania błędów.
+- Błędy są łapane w composable `useApi`.
+- Komponent `ErrorBanner` pokazuje użytkownikowi komunikaty błędów w przyjazny sposób.
+- Struktura projektu została uporządkowana zgodnie z dobrymi praktykami (composables, stores, views, components).
+
+## 💡 Technologie
+
+- Vue 3
+- TypeScript
+- Vite
+- Pinia
+
+## 📂 Foldery
+
+- `components/` – komponenty UI
+- `composables/` – logika z composables
+- `stores/` – globalny stan
+- `views/` – główne widoki
+
+---

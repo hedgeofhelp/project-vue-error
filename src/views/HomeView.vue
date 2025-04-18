@@ -1,6 +1,7 @@
+
 <script setup lang="ts">
-import UserList from './components/UserList.vue';
-import ErrorBanner from './components/ErrorBanner.vue';
+import UserList from '../components/UserList.vue';
+import ErrorBanner from '../components/ErrorBanner.vue';
 </script>
 
 <template>
@@ -9,4 +10,3 @@ import ErrorBanner from './components/ErrorBanner.vue';
     <ErrorBanner />
   </div>
 </template>
-
