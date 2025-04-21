@@ -1,32 +1,36 @@
+# 💡 Vue Error Handler
 
-# Vue 3 App – Obsługa błędów
+> Frontendowa aplikacja demonstracyjna pokazująca obsługę błędów w Vue 3 z TypeScript, Tailwind CSS oraz testami jednostkowymi przy użyciu Vitest.
 
-## 🔧 Uruchomienie projektu
+## 🛠 Tech Stack
 
-1. Uruchom aplikację:
-   ```bash
-   npm run dev
-   ```
-
-## 🧠 Podejście do obsługi błędów
-
-- Wykorzystano `Pinia` do globalnego przechowywania błędów.
-- Błędy są łapane w composable `useApi`.
-- Komponent `ErrorBanner` pokazuje użytkownikowi komunikaty błędów w przyjazny sposób.
-- Struktura projektu została uporządkowana zgodnie z dobrymi praktykami (composables, stores, views, components).
-
-## 💡 Technologie
-
-- Vue 3
-- TypeScript
-- Vite
-- Pinia
-
-## 📂 Foldery
-
-- `components/` – komponenty UI
-- `composables/` – logika z composables
-- `stores/` – globalny stan
-- `views/` – główne widoki
+- ⚙️ **Vue 3** (Composition API)
+- 🧪 **Vitest** – szybkie testy jednostkowe
+- 🎨 **Tailwind CSS v4** – nowoczesny utility-first CSS
+- 🔡 **TypeScript** – typowanie od początku
+- ⚡ **Vite** – ultraszybkie środowisko deweloperskie
 
 ---
+
+├── src/
+│   ├── components/
+│   │   ├── ErrorBoundary.vue
+│   │   └── UserList.vue
+|   |   └── UserList.test.ts
+│   ├── composables/
+│   │   └── useApi.ts
+│   ├── stores/
+|   |   └── errorState.ts
+│   └── views/
+|       └── App.vue
+|       └── main.ts
+|
+├── postcss.config.cjs
+├── README.md
+├── tailwind.config.js
+└── vite.config.ts
+
+Testy są napisane z użyciem Vitest i można je uruchomić w trybie CLI lub z interfejsem graficznym:
+```bashgit init
+npm run test
+npm run test:ui
