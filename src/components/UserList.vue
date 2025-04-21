@@ -1,6 +1,6 @@
 <template>
   <div class="max-w-2xl mx-auto p-6 bg-white rounded-2xl shadow-lg mt-10">
-    <h2 class="text-2xl font-bold mb-4 text-gray-800">Lista użytkowników</h2>
+    <h2 class="text-2xl font-bold mb-4 text-gray-800">The list of users:</h2>
     <ul class="list-none space-y-3">
       <li
         v-for="user in users"
@@ -31,7 +31,7 @@ const fetchUsers = async () => {
     const res = await axios.get('https://jsonplaceholder.typicode.com/users')
     users.value = res.data
   } catch (error) {
-    setError('Nie udało się pobrać użytkowników')
+    setError('Failed to download users')
   }
 }
 

@@ -1,31 +1,47 @@
+import { useFetch } from '@vueuse/core'
 import { ref } from 'vue'
-import { setError, clearError } from '../stores/errorState'
 
-export function useApi<T = unknown>() {
+export function useApi<T = unknown>(url: string) {
   const data = ref<T | null>(null)
-  const loading = ref(false)
-  const errorStore = {
-    setError,
-    clearError
-  }
+  const errorMessage = ref<string | null>(null)
 
-  const fetchData = async (url: string) => {
-    loading.value = true
-    data.value = null
-    errorStore.clearError()
+  const {
+    isFetching,
+    onFetchResponse,
+    onFetchError,
+    execute,
+  } = useFetch(url, {
+    immediate: false,
+    refetch: false,
+  }).get().json<T>()
 
-    try {
-      const response = await fetch(url)
-      if (!response.ok) {
-        throw new Error(`Błąd ${response.status}: ${response.statusText}`)
-      }
-      data.value = await response.json()
-    } catch (error: any) {
-      errorStore.setError(error.message || 'Wystąpił nieznany błąd')
-    } finally {
-      loading.value = false
+  onFetchError((err) => {
+    errorMessage.value = err.message || 'Oops, something went wrong!'
+  })
+
+  onFetchResponse((response) => {
+    if (!response.ok) {
+      errorMessage.value = `Błąd ${response.status}: ${response.statusText}`
+    }
+  })
+
+  const fetchData = async () => {
+    errorMessage.value = null
+    const res = await execute()
+
+    if (res.error) {
+      errorMessage.value = res.error.message || 'Oops, something went wrong!'
+      return
+    }
+    if (res && res.data && res.data.value) {
+      data.value = res.data.value
     }
   }
 
-  return { data, loading, fetchData }
+  return {
+    data,
+    loading: isFetching,
+    errorMessage,
+    fetchData,
+  }
 }
