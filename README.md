@@ -97,7 +97,7 @@ onMounted(() => {
 ├── tailwind.config.js
 └── vite.config.ts
 
-Testy są napisane z użyciem Vitest i można je uruchomić w trybie CLI lub z interfejsem graficznym:
+The tests are written using Vitest and can be run in CLI mode or with a GUI interface:
 ```bashgit init
 npm run test
 npm run test:ui

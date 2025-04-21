@@ -14,26 +14,23 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { useFetch } from '@vueuse/core'
+import { computed } from 'vue'
 import { setError } from '../stores/errorState'
-import axios from 'axios'
-  
+
 interface User {
   id: number
   name: string
   email: string
 }
-  
-const users = ref<User[]>([])
-  
-const fetchUsers = async () => {
-  try {
-    const res = await axios.get('https://jsonplaceholder.typicode.com/users')
-    users.value = res.data
-  } catch (error) {
-    setError('Failed to download users')
-  }
-}
 
-onMounted(fetchUsers)
+const { data, error } = useFetch<User[]>(
+  'https://jsonplaceholder.typicode.com/users'
+).get().json()
+
+const users = computed(() => data.value || [])
+
+if (error.value) {
+  setError('Failed to download users')
+}
 </script>
